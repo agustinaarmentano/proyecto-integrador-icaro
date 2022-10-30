@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "icaro",
+    "password": "icaro2022",
+    "database": "correos_db",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "icaro",
+    "password": "icaro2022",
+    "database": "correos_db",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "icaro",
+    "password": "icaro2022",
+    "database": "correos_db",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
