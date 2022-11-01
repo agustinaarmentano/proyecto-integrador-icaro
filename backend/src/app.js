@@ -13,7 +13,7 @@ const sequelize = new Sequelize(
  {
     host: 'localhost',
     port:'3306',
-    dialect: 'mysql'
+    dialect: 'mysql',
   }
 );
 sequelize.authenticate().then(() => {
@@ -32,8 +32,10 @@ app.listen(port, 'localhost', () => {
     console.log('corriendo en el puerto '+ port )
 });
 var router = require('./routes/routes.js');
-router(app);
 
 // app use
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json);
+app.use(bodyParser.urlencoded({
+   extended: true
+ }));
+ app.use(bodyParser.json());
+router(app);

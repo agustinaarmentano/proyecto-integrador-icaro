@@ -5,12 +5,10 @@ const Email = db.emails
 class EmailController {
     constructor() {}
     
-    async create(){
-        const email = await Email.create({ texto: "primer email", fecha:'24-10-2022' ,recibido: false, enviado: true });
-        console.log(email)
-    }
-    saludo(){
-        return ('hello world');
+    create(email){
+        return Email.create(email)
+        .then((res) => res)
+        .catch((err)=> err)
     }
     get() {
         return Email.findAll()

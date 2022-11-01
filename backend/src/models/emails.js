@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   emails.init({
-    idemails: {type:DataTypes.INTEGER, primaryKey: true},
+    idemails: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     texto: DataTypes.STRING,
     fecha: DataTypes.DATE,
     recibido: DataTypes.BOOLEAN,
