@@ -11,17 +11,20 @@ class EmailController {
         .catch((err)=> err)
     }
     get() {
-        return Email.findAll()
+        return Email.findAll({
+        include:{
+            model : db.usuarios
+        }})
         .then((data) => data)
         .catch((err) => console.log(err))
     }
     getEnviados() {
-        return Email.findAll({ where: { enviado: 1 } })
+        return Email.findAll({ where: { enviado: 1 },include:{model : db.usuarios}})
         .then((data) => data)
         .catch((err) => console.log(err))
     }
     getRecibidos() {
-        return Email.findAll({ where: { recibido: 1 } })
+        return Email.findAll({ where: { recibido: 1 },include:{model : db.usuarios} })
         .then((data) => data)
         .catch((err) => console.log(err))
     }

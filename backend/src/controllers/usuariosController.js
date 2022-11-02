@@ -10,5 +10,10 @@ class UsuariosController {
         .then((data) => data)
         .catch((err) => console.log(err))
     }
+    getOne(id) {
+        return Usuarios.findOne({ where: { idusuarios: id } })
+        .then((data) => data)
+        .catch((err) => console.log(err))
+    }
 }
 module.exports = UsuariosController;

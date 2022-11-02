@@ -10,15 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      emails.belongsTo(models.usuarios, {foreignKey: "idusuarios"});
+      console.log(models)
       // define association here
     }
   }
+
   emails.init({
     idemails: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     texto: DataTypes.STRING,
     fecha: DataTypes.DATE,
     recibido: DataTypes.BOOLEAN,
-    enviado: DataTypes.BOOLEAN
+    enviado: DataTypes.BOOLEAN,
+    idusuarios: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'emails',

@@ -37,4 +37,9 @@ module.exports = (app) => {
         const usuarios = await usuario.get();
         res.send(usuarios)
     })
+    app.get('/usuarios/:id' , async function(req, res) {
+        console.log(req.params.id)
+        const user = await usuario.getOne(req.params.id);
+        res.send(user)
+    })
 }
