@@ -12,6 +12,14 @@ module.exports = (app) => {
         const emails = await email.get();
         res.send(emails)
     })
+    app.get('/emails/enviados' , async function(req, res) {
+        const emails = await email.getEnviados();
+        res.send(emails)
+    })
+    app.get('/emails/recibidos' , async function(req, res) {
+        const emails = await email.getRecibidos();
+        res.send(emails)
+    })
     app.post('/emails' , async function(req, res){
         console.log(req.body)
         nuevo_email = {

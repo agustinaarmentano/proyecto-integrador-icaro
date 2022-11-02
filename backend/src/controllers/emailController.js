@@ -15,5 +15,15 @@ class EmailController {
         .then((data) => data)
         .catch((err) => console.log(err))
     }
+    getEnviados() {
+        return Email.findAll({ where: { enviado: 1 } })
+        .then((data) => data)
+        .catch((err) => console.log(err))
+    }
+    getRecibidos() {
+        return Email.findAll({ where: { recibido: 1 } })
+        .then((data) => data)
+        .catch((err) => console.log(err))
+    }
 }
 module.exports = EmailController;
