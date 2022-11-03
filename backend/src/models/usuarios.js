@@ -20,7 +20,9 @@ module.exports = (sequelize, DataTypes) => {
     apellido: DataTypes.STRING,
     idusuarios: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     pais: DataTypes.STRING,
-    ciudad: DataTypes.STRING
+    ciudad: DataTypes.STRING,
+    usuario: DataTypes.STRING,
+    password: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'usuarios',

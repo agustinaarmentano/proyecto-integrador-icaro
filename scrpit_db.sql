@@ -18,3 +18,9 @@ CREATE TABLE `emails`(
 ALTER TABLE emails
 ADD idusuarios INT;
 ADD FOREIGN KEY (idusuarios) REFERENCES usuarios(idusuarios);
+
+ALTER TABLE usuarios
+ADD password VARCHAR(40)
+
+ALTER TABLE usuarios
+ADD usuario VARCHAR(40)

@@ -15,5 +15,10 @@ class UsuariosController {
         .then((data) => data)
         .catch((err) => console.log(err))
     }
+    create(usuario){
+        return Usuarios.create(usuario)
+        .then((res) => res)
+        .catch((err)=> err)
+    }
 }
 module.exports = UsuariosController;
