@@ -23,7 +23,6 @@ module.exports = (app) => {
         res.send(emails)
     })
     app.post('/emails' , async function(req, res){
-        console.log(req.body)
         nuevo_email = {
             texto:  req.body.texto,
             fecha: new Date(),
@@ -58,8 +57,12 @@ module.exports = (app) => {
         console.log(val)
     })
     // auth
+    app.post('/registro', async function(req, res){
+        user = await auth.create(req, res);
+        return res.send(user)
+    });
     app.post('/login', async function(req, res){
         user = await auth.login(req, res);
         return res.send(user)
-    })
+    });
 }

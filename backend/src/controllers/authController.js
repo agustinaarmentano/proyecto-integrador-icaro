@@ -25,5 +25,21 @@ class AuthController {
         })
         .catch((err) => console.log(err))
     }
+
+    async create(req, res) {
+        const user = {
+            nombre: req.body.nombre,
+            apellido: req.body.apellido,
+            pais: req.body.pais,
+            ciudad: req.body.ciudad,
+            usuario: req.body.usuario,
+            password: req.body.password
+        }
+        user.password = await bcrypt.hash(req.body.password, 8);
+
+        return Usuarios.create(user)
+        .then((res) => res)
+        .catch((err)=> err)
+    }
 }
 module.exports = AuthController;

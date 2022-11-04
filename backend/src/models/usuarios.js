@@ -16,9 +16,9 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   usuarios.init({
+    idusuarios: {type:DataTypes.INTEGER, primaryKey: true, allowNull: false, autoIncrement: true,unique: true},
     nombre: DataTypes.STRING,
     apellido: DataTypes.STRING,
-    idusuarios: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     pais: DataTypes.STRING,
     ciudad: DataTypes.STRING,
     usuario: DataTypes.STRING,
