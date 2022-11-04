@@ -25,9 +25,11 @@ module.exports = (app) => {
     app.post('/emails' , async function(req, res){
         nuevo_email = {
             texto:  req.body.texto,
+            destinatario: req.body.destinatario,
             fecha: new Date(),
-            recibido: false,
-            enviado:true
+            recibido: req.body.recibido,
+            enviado: req.body.enviado,
+            idusuarios: req.body.idusuarios
         }
         val = await email.create(nuevo_email)
         res.send(val)

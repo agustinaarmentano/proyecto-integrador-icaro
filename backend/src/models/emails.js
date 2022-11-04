@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     idemails: {type:DataTypes.INTEGER, primaryKey: true, allowNull: false, autoIncrement: true,unique: true},
     texto: DataTypes.STRING,
     fecha: DataTypes.DATE,
+    destinatario: DataTypes.STRING,
     recibido: DataTypes.BOOLEAN,
     enviado: DataTypes.BOOLEAN,
     idusuarios: DataTypes.INTEGER
