@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     pais: DataTypes.STRING,
     ciudad: DataTypes.STRING,
     usuario: {type:DataTypes.STRING, unique:true},
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    salt: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'usuarios',

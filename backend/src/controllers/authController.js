@@ -8,14 +8,17 @@ class AuthController {
 
     login(req, res) {
         const usuario = req.body.usuario;
-        const password = req.body.password;
-
         return Usuarios.findOne({where: { usuario: usuario}})
         .then(async (user) => {
-            console.log(user.password)
             if(!user) res.status(404).send({msg: 'el usuario no existe'});
-            const match = await bcrypt.compare(password, user.password);
-            console.log(match)
+            console.log(user.salt)
+            const hash = await bcrypt.hash(req.body.password, user.salt);
+            const match = user.password === hash;
+            // const match = await bcrypt.compare(user.password, hash);
+
+            console.log('hash', hash);
+            console.log('user pass', user.password)
+
             if(match) {
                 req.session = user;
                 res.status(200).send({login: 'ok'});
@@ -25,7 +28,6 @@ class AuthController {
     }
 
     async create(req, res) {
-        console.log(req.body)
         if(req.body.password === req.body.password_repeat){
             const user = {
                 nombre: req.body.nombre,
@@ -33,10 +35,17 @@ class AuthController {
                 pais: req.body.pais,
                 ciudad: req.body.ciudad,
                 usuario: req.body.usuario,
-                password: req.body.password
+                password: req.body.password,
+                salt: ''
             }
-            user.password = await bcrypt.hash(req.body.password, 8);
-            return Usuarios.create(user)        
+            const saltRounds = 10;
+
+            const salt = await bcrypt.genSalt(saltRounds)
+            const hash = await bcrypt.hash(req.body.password, salt)
+
+            user.password = hash;
+            user.salt = salt;
+            return Usuarios.create(user)
             .then((res) => res)
             .catch((err)=> err)
         } else {

@@ -20,10 +20,15 @@ ADD idusuarios INT;
 ADD FOREIGN KEY (idusuarios) REFERENCES usuarios(idusuarios);
 
 ALTER TABLE usuarios
-ADD password VARCHAR(40)
+ADD password VARCHAR(255)
+
+ALTER TABLE usuarios
+ADD salt VARCHAR(255)
 
 ALTER TABLE usuarios
 ADD usuario VARCHAR(40)
 
 ALTER TABLE emails
 ADD destinatario VARCHAR(40)
+
+ALTER TABLE `emails` add COLUMN `remitente` varchar(60);

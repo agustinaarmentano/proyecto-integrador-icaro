@@ -7,6 +7,7 @@ const AuthController = require('../controllers/authController');
 const email = new emailController;
 const usuario = new usuariosController;
 const auth = new AuthController;
+const bcrypt = require('bcrypt');
 
 const blockLogin = (req, res, next) => {
     console.log('session', req.session)
@@ -17,6 +18,14 @@ const blockLogin = (req, res, next) => {
 const blockLogout = (req, res, next) => {
     if (!req.session) return res.status(403).send({msg: "NOT_LOGGED_IN"})
     next()
+}
+
+const hashPassword = async (req, res, next) => {
+    if(req.body.password){
+        console.log('entra al if')
+        req.body.password = await bcrypt.hash(req.body.password, 8);
+    }
+    next();
 }
 
 module.exports = (app) => {
@@ -79,7 +88,7 @@ module.exports = (app) => {
         user = await auth.create(req, res);
         return res.send(user)
     });
-    app.post('/login',async function(req, res){
+    app.post('/login', async function(req, res){
         user = await auth.login(req, res);
         return res.send(user)
     });

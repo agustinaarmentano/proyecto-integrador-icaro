@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     fecha: DataTypes.DATE,
     destinatario: DataTypes.STRING,
     recibido: DataTypes.BOOLEAN,
+    remitente: DataTypes.STRING,
     enviado: DataTypes.BOOLEAN,
     idusuarios: DataTypes.INTEGER
   }, {
