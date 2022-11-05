@@ -8,7 +8,23 @@ const email = new emailController;
 const usuario = new usuariosController;
 const auth = new AuthController;
 
+const blockLogin = (req, res, next) => {
+    console.log('session', req.session)
+    if (req.session) return res.status(403).send({msg: "ALREADY_LOGGED_IN"})
+    next()
+}
+
+const blockLogout = (req, res, next) => {
+    if (!req.session) return res.status(403).send({msg: "NOT_LOGGED_IN"})
+    next()
+}
+
 module.exports = (app) => {
+    // app.use((req, res, next) => {
+    //     if (req.session) next();
+    //     res.status(401).send({error: true, msg: "SESSION_EXPIRED"});
+    // })
+
     // emails
     app.get('/emails' , async function(req, res) {
         const emails = await email.get();
@@ -63,8 +79,16 @@ module.exports = (app) => {
         user = await auth.create(req, res);
         return res.send(user)
     });
-    app.post('/login', async function(req, res){
+    app.post('/login',async function(req, res){
         user = await auth.login(req, res);
         return res.send(user)
+    });
+    app.get('/logout', blockLogout, async function(req, res){
+        req.session.destroy(function(err) {
+            // cannot access session here
+            if (err) return res.send(err);
+            return res.status(200).send({ msg: "LOGOUT_OK"});
+
+        })
     });
 }

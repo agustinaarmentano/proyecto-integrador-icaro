@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const session = require('express-session')
+
 
 const cors = require('cors');
 app.use(cors());
@@ -37,5 +39,11 @@ var router = require('./routes/routes.js');
 app.use(bodyParser.urlencoded({
    extended: true
  }));
+
  app.use(bodyParser.json());
+   // app.use(session({
+   // secret: 'keyboard cat',
+   // resave: false,
+   // saveUninitialized: true
+   // }))
 router(app);
